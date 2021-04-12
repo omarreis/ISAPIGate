@@ -4,12 +4,10 @@ library ISAPIGate; // Http Gateway via ISAPI  - ISAPIGate.dpr
 // first version 2002
 // dez18: ported p/ Delphi 10.3 Rio
 
-{ Usage:
-    https://www.tecepe.com.br/scripts/OpycGate.dll/1/path?queryst      ( 1 = host ID )
-    maps to http://remoteserver:port/path?queryst
-
-  Remote server(s) table hardcoded
-}
+// Usage:
+//    https://www.tecepe.com.br/scripts/OpycGate.dll/1/path?queryst
+//    1 = host ID
+//    maps to http://remoteserver:port/path?queryst
 
 uses
   Windows, Classes, SysUtils, Isapi2,
@@ -21,7 +19,7 @@ uses
 {$R *.RES}
 
 const
-  Title='HttpGate';
+  Title='ISAPIGate';
   CRLF=#13#10;
 
   // administrative URLs - *change* this in your app !!
@@ -62,20 +60,20 @@ begin   // get remote server:port
       Result := ShowISAPIGateStatus(ECB);
       exit;
     end;
-  if (aPath=AdmURLSalt+'/ShowURLs') then          // obsolete
-    begin
-      ActivateShowURLs(ECB);
-      Result := TRUE;
-      exit;
-    end;
+  // if (aPath=AdmURLSalt+'/ShowURLs') then          // obsolete
+  //   begin
+  //     ActivateShowURLs(ECB);
+  //     Result := TRUE;
+  //     exit;
+  //   end;
 
-  if (Length(aPath)<=2) then exit; //curto demais...
-  Delete(aPath,1,1);               //apaga a 1a '/'
-  p:=Pos('/',aPath);               //procura a 2a
-  if p=0 then exit;                //nao tem a 2a '/' ! --> sai
-  aHostID:=Copy(aPath,1,p-1);      //pega o HostID
-  aPath:=Copy(aPath,p,200);        //remove o HostID do path que vai ser passado para o destino
-  try iHostID:=StrToInt(aHostID); except exit; end;
+  if (Length(aPath)<=2) then exit;   // curto demais...
+  Delete(aPath,1,1);                 // delete 1st '/'
+  p := Pos('/',aPath);               // search 2nd
+  if (p=0) then exit;                // bo 2nd '/' ! --> out
+  aHostID := Copy(aPath,1,p-1);      //pega o HostID
+  aPath   := Copy(aPath,p,200);      //remove o HostID do path que vai ser passado para o destino
+  try iHostID:=StrToInt(aHostID); except exit; end;  //invalid host id
 
   if (iHostID>0) and (iHostID<=NumAcceptedHosts) then // search host table.
     with AcceptedHosts[iHostID] do
@@ -97,10 +95,10 @@ begin   // get remote server:port
       if GetClientHeader(ECB,'CONTENT_TYPE',S)   then CliRequest:=CliRequest+'Content-Type: '+S+CRLF;
       if GetClientHeader(ECB,'CONTENT_LENGTH',S) then CliRequest:=CliRequest+'Content-Length: '+S+CRLF;
       if GetClientHeader(ECB,'HTTP_HOST',S)      then CliRequest:=CliRequest+'Host: '+S+CRLF;
-      CliRequest:=CliRequest+CRLF;      // double crlf to finish header
+      CliRequest := CliRequest+CRLF;          // double crlf to finish header
       if (ECB^.cbAvailable>0) then
         begin
-          SetString(S,PAnsiChar(ECB^.lpbData),ECB^.cbAvailable);
+          SetString(S, PAnsiChar(ECB^.lpbData), ECB^.cbAvailable);
           CliRequest := CliRequest+S;
         end;
     end;
@@ -116,7 +114,7 @@ end;
 Procedure ReadAcceptedHostsList;
 // var Reg:TRegistry; Ok:Boolean; i,p:integer; aHost,aPort:String; iPort:integer;
 begin
-   // Hardcoded table of remote hosts
+   // Hardcoded table of remote hosts *add your host table here*
    NumAcceptedHosts := 1;   // 1 host
 
    // localhost:8080
@@ -127,7 +125,7 @@ begin
   // Reg := TRegistry.Create;
   // try
   //   Reg.RootKey:=HKEY_LOCAL_MACHINE;
-  //   Ok:=Reg.OpenKey('Software\Enfoque\RioGate',FALSE);
+  //   Ok:=Reg.OpenKey('Software\omarreis\ISAPIGate',FALSE);
   //   if Ok then for i:=1 to MaxAcceptedHosts do
   //     begin
   //       try aHost:=Reg.ReadString('Host'+IntToStr(i)); except exit; end;
@@ -140,7 +138,7 @@ begin
   //               try iPort:=StrToInt(aPort); except iPort:=80; end;
   //               aHost:=Copy(aHost,1,p-1);
   //             end
-  //             else iPort:=80; //default port
+  //             else iPort:=80; //default http port
   //           with AcceptedHosts[i] do begin Name:=aHost; Port:=iPort; end;
   //           NumAcceptedHosts:=i;
   //         end
@@ -187,6 +185,6 @@ exports
 
 begin
   GateStartTime := now;
-  ReadAcceptedHostsList;  //read list of registered remote hosts
+  ReadAcceptedHostsList;      // read list of registered remote hosts
 end.
 
