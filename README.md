@@ -37,7 +37,8 @@ For security reasons, only registered servers are accepted.
 
 The remote host table is *hard-coded* inside ISAPIGate.dpr.
 To change the table, one has to edit it and recompile ISAPIGate.dll.
-This makes if more difficult for someone to hack the table, I suppose.  
+This makes if more difficult for someone to hack the routing table, I suppose.
+Note that changing ISAPIGate.dll requires stopping the server.
 
 Any kind of content can be routed: text, images, binary files.
 
