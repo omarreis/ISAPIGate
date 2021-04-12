@@ -1,5 +1,7 @@
 # ISAPIGate - Http/Https gateway ISAPI
 
+tl;dr - Route IIS https requests to separate http-only webserver
+
 ## Description
 
 This Delphi ISAPI implements a http/https gateway. It fetches files from 
@@ -52,8 +54,8 @@ This way all access must go thru ISAPIGate.
 
 3- On Internet Information Services Manager application: 
 
-      Select webserver, right-click and click *>Add Application*
-      set application properties:
+      Select webserver, right-click and choose >Add Application
+      Set application properties:
       Application pool=www.yourdomain.com
       Physical Path=c:\scripts_path\
       Preload Enabled=false
