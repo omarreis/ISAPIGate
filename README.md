@@ -51,6 +51,7 @@ This way all access must go thru ISAPIGate.
 2- Install IIS ISAPI support (not set by default )
 
 3- On Internet Information Services Manager application: 
+
       Select webserver, right-click and click *>Add Application*
       set application properties:
       Application pool=www.yourdomain.com
@@ -59,13 +60,14 @@ This way all access must go thru ISAPIGate.
       Enabled protocols=http     (for http and https. If you want https only, set to https)
 
 4- Allow ISAPI:
+
       Select server > ISAPI and CGI Restrictions > Open Feature
       Add ISAPI extension:
       Description=ISAPIGate
       Restriction=Allowed
       Path='c:\scripts_path\ISAPIGate.dll'  
 
-5- Set IIS application poll to be reset periodically (p.e. daily) to avoid application failure by heap fragmentation.
+5- Set IIS application pool to be reset periodically (p.e. daily) to avoid application failure by heap fragmentation.
    
 
   
