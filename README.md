@@ -1,20 +1,23 @@
 # ISAPIGate - Http/Https gateway ISAPI
 
-tl;dr - Route IIS https requests to separate http-only webserver
+tl;dr - http/https Gateway fetches files from external http-only webserver(s)
 
 ## Description
 
 This Delphi ISAPI implements a http/https gateway. It fetches files from 
-remote web server(s) ( on a different host or on same host but a different port ) 
+remote web server(s) (either on a different host or on same host but a different port ) 
 and returns to the client. 
 
-ISAPI is a Microsoft specification for IIS webserver applications.
-The executable is a native DLL that implements standard functions, 
-called by IIS.
+ISAPI is one of the first Microsoft specifications for IIS webserver applications.
+The compiled executable is a native DLL that implements standard functions, 
+called by IIS. Since it uses compiled code, ISAPI applications are efficient and safe.  
 
 *ISAPIGate* is an old ISAPI application, from 2002, but is still useful.
 Originally it was ported from a C sample, hence the C style.
-It was writen before VCL's ISAPI. 
+It was writen before VCL's ISAPI, so it uses a custom ISAPI implementation. 
+
+Another attribute of ISAPI applications: the API doesn't change, 
+so it is rarely broken by changes   :)
 
 ## ISAPIGate uses 
 * Route secure https requests to http-only web servers. 
