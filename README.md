@@ -16,10 +16,10 @@ It was writen before VCL's ISAPI.
 
 The remote server is selected according to a numeric ID in the query string.
 
-example: 
-  URL = https://www.myserver.com/scripts/ISAPIGate.dll/1/path?querystr
-  In this example, server id='1' translates to '127.0.0.1:8080'  
-  So file http://127.0.0.1:8080/path?querystr is returned.
+    example: 
+     URL = https://www.myserver.com/scripts/ISAPIGate.dll/1/path?querystr
+     In this example, server id='1' translates to '127.0.0.1:8080'  
+     So file http://127.0.0.1:8080/path?querystr is returned.
   
 ISAPIGate can route requests to multiple remote servers.
 For security reasons, only registered servers are accepted.
