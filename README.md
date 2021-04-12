@@ -1,6 +1,6 @@
 ## ISAPIGate - Http/Https gateway ISAPI
 
-* ISAPI is a Microsoft specification for IIS webserver applications 
+( ISAPI is a Microsoft specification for IIS native webserver applications ) 
 
 # Description
 
