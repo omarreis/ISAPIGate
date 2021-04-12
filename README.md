@@ -1,6 +1,6 @@
 # ISAPIGate - Http/Https gateway ISAPI
 
-tl;dr - http/https Gateway fetches files from external http-only webserver(s)
+tl;dr - http/https gateway fetches files from external http-only webserver(s)
 
 ## Description
 
