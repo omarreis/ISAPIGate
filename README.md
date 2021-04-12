@@ -23,7 +23,9 @@ so it is rarely broken by changes   :)
 * Route secure https requests to http-only web servers. 
 * Run web applications on separate web servers while using the same IIS server as portal ( and sharing the SSL certificate ) 
 
-More and more, secure https protocol is preferred over plaintext http for downloads. This is for security reasons. In some near future, mobile operating systems will only allow downloads using HTTPS.
+More and more, secure https protocol is preferred over plaintext http for downloads. This is for security reasons.
+Connetcion with a webserver with certified name is more reliable and safer to the user.
+In some near future, mobile operating systems will only allow downloads using HTTPS.
 
 The remote server is selected according to a numeric ID in the query string.
 
@@ -33,12 +35,13 @@ The remote server is selected according to a numeric ID in the query string.
      So file http://127.0.0.1:8080/path?querystr is returned.
   
 ISAPIGate can route requests to multiple remote servers.
-For security reasons, only registered servers are accepted.
+For security reasons, only registered servers are connected.
 
 The remote host table is *hard-coded* inside ISAPIGate.dpr.
 To change the table, one has to edit it and recompile ISAPIGate.dll.
 This makes if more difficult for someone to hack the routing table, I suppose.
-Note that changing ISAPIGate.dll requires stopping the server.
+
+Note that changing ISAPIGate.dll requires stopping the server, so it is not for frequent changes.
 
 Any kind of content can be routed: text, images, binary files.
 
