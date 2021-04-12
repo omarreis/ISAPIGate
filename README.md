@@ -23,8 +23,9 @@ example:
   
 ISAPIGate can route requests to multiple remote servers.
 For security reasons, only registered servers are accepted.
+
 The remote host table is *hard-coded* inside ISAPIGate.dpr.
-To change the table, one has to edit and recompile ISAPIGate.dll.
+To change the table, one has to edit it and recompile ISAPIGate.dll.
 This makes if more difficult for someone to hack the table, I suppose.  
 
 Any kind of content can be routed: text, images, binary files.
@@ -33,33 +34,31 @@ In order to fetch a file, the 1st segment of the path is removed
 and the *path?querystr* is passed on to the remote host,
 along with http request headers. 
 
-For simplicity and safety, the remote host table is hard-coded
-inside ISAPIGate.dpr source code. 
-
-# ISAPIGate Uses 
-* Route secure https requests to local http-only web server 
-* Run web applications on separate web servers, while using the IIS server as a portal, sharing the server certificate. 
+## ISAPIGate Uses 
+* Route secure https requests to http-only web servers 
+* Run web applications on separate web servers while using the same IIS server as portal ( and sharing the SSL certificate ) 
   
-# IIS Configuration
+## IIS Configuration
 There are some steps to configure IIS to run ISAPI scripts.
-Those depend on IIS version. There are many tutorials on the internet on how to do that.
+Those depend on IIS version, so I will not go into details here. There are many tutorials on the internet, depending on your IIS and Windows vesrion.
 
 Basically you have to:
 
 1- If running the remote server(s) on the same host as IIS, on a different port, 
 remember to close that port for outside access on the firewall. 
-Only allow access via ISAPIGate. 
+This way all access must go thru ISAPIGate. 
 
 2- Install IIS ISAPI support (not set by default )
 
 3- On Internet Information Services Manager application :
-    Select server > ISAPI and CGI Restrictions > Open Feature
-    Add ISAPI extension:
+
+     Select server > ISAPI and CGI Restrictions > Open Feature
+     Add ISAPI extension:
        Description=ISAPIGate
        Restriction=Allowed
-	   Path='c:\scripts_path\ISAPIGate.dll'  
+       Path='c:\scripts_path\ISAPIGate.dll'  
 
-4- Set IIS application poll to be reset periodically (p.e. daily) to avoid failure by heap fragmentation.
+4- Set IIS application poll to be reset periodically (p.e. daily) to avoid application failure by heap fragmentation.
 
 
    
