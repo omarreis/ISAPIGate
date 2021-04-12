@@ -7,7 +7,7 @@ remote web server(s) ( on a different host or on same host but different port )
 and returns to the client. 
 
 ISAPI is a Microsoft specification for IIS webserver applications.
-The executable is a native DLL that implements certain native functions, 
+The executable is a native DLL that implements standard functions, 
 called by IIS.
 
 *ISAPIGate* is an old ISAPI application, from 2002, but is still useful.
