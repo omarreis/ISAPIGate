@@ -83,6 +83,12 @@ This way all access must go thru ISAPIGate.
       Path='c:\scripts_path\ISAPIGate.dll'  
 
 5- Set IIS application pool to be reset periodically (p.e. daily) to avoid application failure by heap fragmentation.
+
+## ISAPIGate security
+
+Since ISAPIGate is connecting to the remote server with an unencrypted socket, configure the firewall to protect this channel. 
+
+
    
 
   
