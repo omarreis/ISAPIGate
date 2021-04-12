@@ -16,7 +16,7 @@ It was writen before VCL's ISAPI.
 
 The remote server is selected according to a numeric ID in the query string.
 
-    example: 
+     example: 
      URL = https://www.myserver.com/scripts/ISAPIGate.dll/1/path?querystr
      In this example, server id='1' translates to '127.0.0.1:8080'  
      So file http://127.0.0.1:8080/path?querystr is returned.
@@ -51,20 +51,21 @@ This way all access must go thru ISAPIGate.
 2- Install IIS ISAPI support (not set by default )
 
 3- On Internet Information Services Manager application: 
-    Select webserver, right-click and click *>Add Application*
-    set application properties:
-    Application pool=www.yourdomain.com
-    Physical Path=c:\scripts_path\
-    Preload Enabled=false
-    Enabled protocols=http     (for http and https. If you want https only, set to https)
+      Select webserver, right-click and click *>Add Application*
+      set application properties:
+      Application pool=www.yourdomain.com
+      Physical Path=c:\scripts_path\
+      Preload Enabled=false
+      Enabled protocols=http     (for http and https. If you want https only, set to https)
 
 4- Allow ISAPI:
-    Select server > ISAPI and CGI Restrictions > Open Feature
-    Add ISAPI extension:
-       Description=ISAPIGate
-       Restriction=Allowed
-       Path='c:\scripts_path\ISAPIGate.dll'  
+      Select server > ISAPI and CGI Restrictions > Open Feature
+      Add ISAPI extension:
+      Description=ISAPIGate
+      Restriction=Allowed
+      Path='c:\scripts_path\ISAPIGate.dll'  
 
 5- Set IIS application poll to be reset periodically (p.e. daily) to avoid application failure by heap fragmentation.
    
 
+  
