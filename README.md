@@ -24,10 +24,14 @@ so it is rarely broken by changes   :)
 * Run web applications on separate web servers while using the same IIS server as portal ( and sharing the SSL certificate ) 
 
 More and more, secure https protocol is preferred over plaintext http for downloads. This is for security reasons.
-Connetcion with a webserver with certified name is more reliable and safer to the user.
+Connections with a webserver with certified name are more reliable and safer to the user.
 In some near future, mobile operating systems will only allow downloads using HTTPS.
 
-The remote server is selected according to a numeric ID in the query string.
+If you have a custom webserver that runs as a separate executable, chances are it does not support https transfers.
+
+## Routing files
+
+With ISAPIGate, the remote server is selected using a numeric ID inside the query string.
 
      example: 
      URL = https://www.myserver.com/scripts/ISAPIGate.dll/1/path?querystr
