@@ -5,7 +5,7 @@ tl;dr - Route IIS https requests to separate http-only webserver
 ## Description
 
 This Delphi ISAPI implements a http/https gateway. It fetches files from 
-remote web server(s) ( on a different host or on same host but different port ) 
+remote web server(s) ( on a different host or on same host but a different port ) 
 and returns to the client. 
 
 ISAPI is a Microsoft specification for IIS webserver applications.
@@ -15,6 +15,12 @@ called by IIS.
 *ISAPIGate* is an old ISAPI application, from 2002, but is still useful.
 Originally it was ported from a C sample, hence the C style.
 It was writen before VCL's ISAPI. 
+
+## ISAPIGate uses 
+* Route secure https requests to http-only web servers. 
+* Run web applications on separate web servers while using the same IIS server as portal ( and sharing the SSL certificate ) 
+
+More and more, secure https protocol is preferred over plaintext http for downloads. This is for security reasons. In some near future, mobile operating systems will only allow downloads using HTTPS.
 
 The remote server is selected according to a numeric ID in the query string.
 
@@ -36,10 +42,6 @@ In order to fetch a file, the 1st segment of the path is removed
 and the *path?querystr* is passed on to the remote host,
 along with http request headers. 
 
-## ISAPIGate Uses 
-* Route secure https requests to http-only web servers 
-* Run web applications on separate web servers while using the same IIS server as portal ( and sharing the SSL certificate ) 
-  
 ## IIS Configuration
 There are some steps to configure IIS to run ISAPI scripts.
 Those depend on IIS version, so I will not go into details here. There are many tutorials on the internet, depending on your IIS and Windows vesrion.
