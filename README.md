@@ -48,10 +48,10 @@ Any kind of content can be routed: text, images, binary files.
 
 In order to fetch a file, the 1st segment of the path is removed 
 and the *path?querystr* is passed on to the remote host,
-along with http request headers. 
+along with http request headers. That includes cookies, authorization and other headers.  
 
-Connection to the remote server uses old style sockets ( WinSock )
-Response is progressive ( bytes delivered as received ).
+Connection to the remote server uses old style sockets (WinSock).
+Response is progressive, with bytes delivered as received.
 
 Project is small: only 2 source files ISAPIGate.dpr and HttpGateUtils.pas   
 
