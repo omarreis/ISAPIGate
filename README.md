@@ -105,8 +105,8 @@ This way all outside access goes thru ISAPIGate.
 
 Note that ISAPIGate connects to the remote server(s) using an unencrypted socket. Security of the channel stops at this point. 
 
-      <Internet> <-------https------> <ISAPIGate> <------http-------> <remote server>    
-                                      ^firewall
+      <Internet> <-------http/https------> | <ISAPIGate> <------http-------> <remote server>    
+                                           ^ firewall
 
 The <remote server> is supposed to be inside your network. Don't gateway to servers you don't control.
 Configure the firewall to protect the channel from outside.
