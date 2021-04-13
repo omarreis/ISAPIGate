@@ -72,23 +72,24 @@ This way all outside access goes thru ISAPIGate.
 
 2- Install IIS ISAPI support if not installed by default.   
 
-3- Enable 32-Bit ISAPI: 
- 
-      Open Internet Information Services Manager application:
-      Select Applications Pools
-      Select www.yourdomain.com
-      right-click and select Advanced Settings
-      set Enable 32-bit Application to True  
+3- Create /scripts folder
 
-4- Create /scripts folder
-
-      Select webserver main node and right-click  >Add Application
+      deploy c:\scripts_path\ISAPIGate.dll
+      Select webserver main node, right-click >Add Application
       Set application properties:
         Virtual Path= /scripts
         Application pool= www.yourdomain.com
         Physical Path= c:\scripts_path\
         Preload Enabled= false
         Enabled protocols= http     (for http and https. If you want https only, set to https)
+
+4- Enable 32-Bit ISAPI: 
+ 
+      Open Internet Information Services Manager application:
+      Select Applications Pools
+      Select www.yourdomain.com
+      right-click and select Advanced Settings
+      set Enable 32-bit Application to True  
 
 5- Create ISAPIGate restriction:
 
