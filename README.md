@@ -23,11 +23,11 @@ so it is rarely broken by changes   :)
 * Route secure https requests to http-only web servers. 
 * Run web applications on separate web servers while using the same IIS server as portal ( and sharing the SSL certificate ) 
 
-More and more, secure https protocol is preferred over plaintext http for downloads. This is for security reasons.
-Connections with a webserver with certified name are more reliable and safer to the user.
-Mobile operating system (Apple and Google) recommend using https.
-
-If you have a custom webserver that runs as a separate executable, chances are it does not support https transfers.
+Secure https protocol is preferred over plaintext http for downloads. 
+Mobile operating system makers (Apple and Google) recommend or require using https.
+Connections with a server with certified name are more reliable and safer.
+If you have a custom webserver that runs as a separate executable, 
+chances are it does not support https transfers.
 
 ## Routing files
 
