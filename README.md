@@ -17,7 +17,7 @@ Originally it was ported from a C sample, hence the C style.
 It is from before VCL's ISAPI support, so it uses a custom ISAPI implementation. 
 
 Another attribute of ISAPI applications: the API doesn't change, 
-so it is rarely broken by changes   :)
+so it is rarely broken   :)
 
 ## ISAPIGate uses 
 * Route secure https requests to http-only web servers. 
