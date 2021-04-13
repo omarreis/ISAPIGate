@@ -4,9 +4,7 @@ tl;dr - http/https gateway serves files from local http-only webserver(s)
 
 ## Description
 
-This Delphi ISAPI implements a http/https gateway. It fetches files from 
-remote web server(s), either on a different host or on same host but a different port,  
-and returns to the client. 
+This Delphi ISAPI implements a http/https gateway.  It fetches files from remote web server(s), either on a different host or on same host but on a different port and returns to the client. 
 
 ISAPI is one of the first Microsoft specifications for IIS webserver applications.
 The script executable is a native DLL that implements standard functions, 
@@ -54,11 +52,12 @@ and the *path?querystr* is passed on to the remote host,
 along with http request headers. 
 
 Connection to the remote server uses old style sockets ( WinSock )
+Response is progressive ( bytes delivered as received ).
 
-The project is only 2 source files: ISAPIGate.dpr and HttpGateUtils.pas   
+Project is small: only 2 source files ISAPIGate.dpr and HttpGateUtils.pas   
 
-Current version was tested with Delphi 10.4.1, Windows Server 2016 and IIS 10.0
-Compiled as a Win32 DLL ( must enable IIS Win32 ISAPIs ).  
+*Current version was tested with Delphi 10.4.1, Windows Server 2016 and IIS 10.0
+Compiled as a Win32 DLL ( must enable IIS Win32 ISAPIs )*
 
 ## IIS Configuration
 
