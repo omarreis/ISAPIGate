@@ -53,13 +53,15 @@ In order to fetch a file, the 1st segment of the path is removed
 and the *path?querystr* is passed on to the remote host,
 along with http request headers. 
 
-Connection to the remote server uses sockets ( WinSock )
-Only two source files: ISAPIGate.dpr and HttpGateUtils.pas   
+Connection to the remote server uses old style sockets ( WinSock )
 
-Current version tested with Delphi 10.4.1, Windows Server 2016, IIS 10.0
-Compiled as a Win32 DLL.
+The project is only 2 source files: ISAPIGate.dpr and HttpGateUtils.pas   
+
+Current version was tested with Delphi 10.4.1, Windows Server 2016 and IIS 10.0
+Compiled as a Win32 DLL ( must enable IIS Win32 ISAPIs ).  
 
 ## IIS Configuration
+
 There are some steps to configure Windows IIS to run ISAPI scripts.
 Those depend on IIS version, so I will not go into details here. 
 There are many tutorials on the internet, depending on IIS and Windows version.
