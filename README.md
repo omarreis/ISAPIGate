@@ -105,4 +105,4 @@ This way all outside access mujst go thru IIS.
 ## ISAPIGate security
 
 Note that ISAPIGate connects to the remote server(s) using an unencrypted socket.
-Configure firewall to protect this port from outside connections.
+Security of the channel stops at this point. Configure firewall to protect this port from outside.
