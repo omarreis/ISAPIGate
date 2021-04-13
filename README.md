@@ -35,7 +35,7 @@ With ISAPIGate, the remote server is selected using a numeric ID inside the quer
 
      usage example: 
      URL = https://www.myserver.com/scripts/ISAPIGate.dll/1/path?querystr
-     In this example, server id='/1' translates to '127.0.0.1:8080'  
+     In this example, server id='/1' translates to '127.0.0.1:8080'  ( localhost )
      So file http://127.0.0.1:8080/path?querystr is returned.
   
 ISAPIGate can route requests to multiple remote servers.
