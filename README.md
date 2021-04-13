@@ -53,6 +53,12 @@ In order to fetch a file, the 1st segment of the path is removed
 and the *path?querystr* is passed on to the remote host,
 along with http request headers. 
 
+Connection to the remote server uses sockets ( WinSock )
+Only two source files: ISAPIGate.dpr and HttpGateUtils.pas   
+
+Current version tested with Delphi 10.4.1, Windows Server 2016, IIS 10.0
+Compiled as a Win32 DLL.
+
 ## IIS Configuration
 There are some steps to configure Windows IIS to run ISAPI scripts.
 Those depend on IIS version, so I will not go into details here. 
@@ -66,7 +72,15 @@ This way all outside access mujst go thru IIS.
 
 2- Install IIS ISAPI support (IIS does not by default).  
 
-3- On Internet Information Services Manager application: 
+3- Enable 32-Bit ISAPI: 
+ 
+      Open Internet Information Services Manager application:
+      Select Applications Pools
+      Select www.yourdomain.com
+      right-click and select Advanced Settings
+      set Enable 32-bit Application to True  
+
+4- Create /scripts folder
 
       Select webserver main node and right-click  >Add Application
       Set application properties:
@@ -76,7 +90,7 @@ This way all outside access mujst go thru IIS.
         Preload Enabled= false
         Enabled protocols= http     (for http and https. If you want https only, set to https)
 
-4- Create ISAPIGate restriction:
+5- Create ISAPIGate restriction:
 
       Select server >ISAPI and CGI Restrictions>  click Open Feature
       Add ISAPI extension
@@ -84,13 +98,8 @@ This way all outside access mujst go thru IIS.
         Restriction= Allowed
         Path= c:\scripts_path\ISAPIGate.dll  
 
-5- Set IIS application pool to be reset periodically (p.e. daily) to avoid application failure by heap fragmentation.
+6- Set IIS application pool to be reset periodically (p.e. daily) to avoid application failure by heap fragmentation.
 
 ## ISAPIGate security
 
 Since ISAPIGate is connecting to the remote server with an unencrypted socket, configure the firewall to protect this channel. 
-
-
-   
-
-  
