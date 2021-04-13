@@ -102,5 +102,4 @@ This way all outside access goes thru ISAPIGate.
 
 ## ISAPIGate security
 
-Note that ISAPIGate connects to the remote server(s) using an unencrypted socket.
-Security of the channel stops at this point. Configure the firewall to protect the channel from outside.
+Note that ISAPIGate connects to the remote server(s) using an unencrypted socket. Security of the channel stops at this point. Configure the firewall to protect the channel from outside.
