@@ -1,6 +1,6 @@
 # ISAPIGate - Http/Https gateway ISAPI
 
-tl;dr - http/https gateway fetches files from local http-only webserver(s)
+tl;dr - http/https gateway serves files from local http-only webserver(s)
 
 ## Description
 
@@ -10,11 +10,11 @@ and returns to the client.
 
 ISAPI is one of the first Microsoft specifications for IIS webserver applications.
 The script executable is a native DLL that implements standard functions, 
-called by IIS. Since it uses compiled Delphi code, ISAPI applications are efficient and safe.  
+called by IIS. Since it is pre-compiled, ISAPI applications are efficient and safe.  
 
-*ISAPIGate* is from 2002, an old style and time proven ISAPI application.  
+*ISAPIGate* is from 2002, an old style but time proven ISAPI application.  
 Originally it was ported from a C sample, hence the C style.
-It was writen before VCL ISAPI support, so it uses a custom ISAPI implementation. 
+It is from before VCL's ISAPI support, so it uses a custom ISAPI implementation. 
 
 Another attribute of ISAPI applications: the API doesn't change, 
 so it is rarely broken by changes   :)
@@ -25,7 +25,7 @@ so it is rarely broken by changes   :)
 
 More and more, secure https protocol is preferred over plaintext http for downloads. This is for security reasons.
 Connections with a webserver with certified name are more reliable and safer to the user.
-In some near future, mobile operating systems will only allow downloads using HTTPS.
+Mobile operating system (Apple and Google) recommend using https.
 
 If you have a custom webserver that runs as a separate executable, chances are it does not support https transfers.
 
@@ -33,9 +33,9 @@ If you have a custom webserver that runs as a separate executable, chances are i
 
 With ISAPIGate, the remote server is selected using a numeric ID inside the query string.
 
-     example: 
+     usage example: 
      URL = https://www.myserver.com/scripts/ISAPIGate.dll/1/path?querystr
-     In this example, server id='1' translates to '127.0.0.1:8080'  
+     In this example, server id='/1' translates to '127.0.0.1:8080'  
      So file http://127.0.0.1:8080/path?querystr is returned.
   
 ISAPIGate can route requests to multiple remote servers.
@@ -54,33 +54,35 @@ and the *path?querystr* is passed on to the remote host,
 along with http request headers. 
 
 ## IIS Configuration
-There are some steps to configure IIS to run ISAPI scripts.
-Those depend on IIS version, so I will not go into details here. There are many tutorials on the internet, depending on your IIS and Windows vesrion.
+There are some steps to configure Windows IIS to run ISAPI scripts.
+Those depend on IIS version, so I will not go into details here. 
+There are many tutorials on the internet, depending on IIS and Windows version.
 
 Basically you have to:
 
-1- If running the remote server(s) on the same host as IIS, on a different port, 
-remember to close that port for outside access on the firewall. 
-This way all access must go thru ISAPIGate. 
+1- If running the remote server(s) on the same host as IIS, but on a different port, 
+remember to close that server port for outside access on the firewall. 
+This way all outside access mujst go thru IIS.  
 
-2- Install IIS ISAPI support (not set by default )
+2- Install IIS ISAPI support (IIS does not by default).  
 
 3- On Internet Information Services Manager application: 
 
-      Select webserver, right-click and choose >Add Application
+      Select webserver main node and right-click  >Add Application
       Set application properties:
-      Application pool=www.yourdomain.com
-      Physical Path=c:\scripts_path\
-      Preload Enabled=false
-      Enabled protocols=http     (for http and https. If you want https only, set to https)
+        Virtual Path= /scripts
+        Application pool= www.yourdomain.com
+        Physical Path= c:\scripts_path\
+        Preload Enabled= false
+        Enabled protocols= http     (for http and https. If you want https only, set to https)
 
-4- Allow ISAPI:
+4- Create ISAPIGate restriction:
 
-      Select server > ISAPI and CGI Restrictions > Open Feature
-      Add ISAPI extension:
-      Description=ISAPIGate
-      Restriction=Allowed
-      Path='c:\scripts_path\ISAPIGate.dll'  
+      Select server >ISAPI and CGI Restrictions>  click Open Feature
+      Add ISAPI extension
+        Description= ISAPIGate
+        Restriction= Allowed
+        Path= c:\scripts_path\ISAPIGate.dll  
 
 5- Set IIS application pool to be reset periodically (p.e. daily) to avoid application failure by heap fragmentation.
 
