@@ -29,7 +29,7 @@ chances are it does not support https transfers.
 
 ## Routing files
 
-With ISAPIGate, the remote server is selected using a numeric ID inside the query string.
+With ISAPIGate, the remote server is selected using a numeric ID inside the URI.
 
      usage example: 
      URL = https://www.myserver.com/scripts/ISAPIGate.dll/1/path?querystr
