@@ -69,9 +69,9 @@ Basically you have to:
 
 1- If running the remote server(s) on the same host as IIS, but on a different port, 
 remember to close that server port for outside access on the firewall. 
-This way all outside access mujst go thru IIS.  
+This way all outside access goes thru ISAPIGate.  
 
-2- Install IIS ISAPI support (IIS does not by default).  
+2- Install IIS ISAPI support if not installed by default.   
 
 3- Enable 32-Bit ISAPI: 
  
@@ -104,4 +104,4 @@ This way all outside access mujst go thru IIS.
 ## ISAPIGate security
 
 Note that ISAPIGate connects to the remote server(s) using an unencrypted socket.
-Security of the channel stops at this point. Configure firewall to protect this port from outside.
+Security of the channel stops at this point. Configure the firewall to protect the channel from outside.
