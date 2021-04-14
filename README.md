@@ -75,6 +75,7 @@ This way all outside access goes thru ISAPIGate.
 3- Create /scripts folder
 
       deploy c:\scripts_path\ISAPIGate.dll
+      Open Internet Information Services Manager application:
       Select webserver main node, right-click >Add Application
       Set application properties:
         Virtual Path= /scripts
@@ -85,7 +86,7 @@ This way all outside access goes thru ISAPIGate.
 
 4- Enable 32-Bit ISAPI: 
  
-      Open Internet Information Services Manager application:
+      On Internet Information Services Manager application:
       Select Applications Pools
       Select www.yourdomain.com
       right-click and select Advanced Settings
@@ -93,6 +94,7 @@ This way all outside access goes thru ISAPIGate.
 
 5- Create ISAPIGate restriction:
 
+      On Internet Information Services Manager application:
       Select server >ISAPI and CGI Restrictions>  click Open Feature
       Add ISAPI extension
         Description= ISAPIGate
@@ -107,6 +109,6 @@ Note that ISAPIGate connects to the remote server(s) using an unencrypted socket
 
       <Internet> <-------http/https------> | <ISAPIGate> <------http-------> <remote server>    
                                            ^ firewall
-
+                                           
 The remote server is supposed to be inside your network. Don't gateway to servers over the internet or that you don't control.
-Configure the firewall to protect the channel from outside.
+Configure the firewall to protect the channel from the jungle outside.
