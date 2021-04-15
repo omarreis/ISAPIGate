@@ -4,7 +4,9 @@ tl;dr - http/https gateway serves files from local http-only webserver(s)
 
 ## Description
 
-This Delphi ISAPI implements a http/https gateway.  It fetches files from remote web server(s), either on a different host or on same host but on a different port and returns to the client. 
+This Delphi ISAPI implements a http/https gateway.  
+
+It fetches files from remote web server(s), either on a different host or a different port, and returns to the client. 
 
 ISAPI is one of the first Microsoft specifications for IIS webserver applications.
 The script executable is a native DLL that implements standard functions, 
@@ -22,10 +24,10 @@ so it is rarely broken   :)
 * Run web applications on separate web servers while using the same IIS server as portal ( and sharing the SSL certificate ) 
 
 Secure https protocol is preferred over plaintext http for downloads. 
-Mobile operating system makers recommend or require using https in apps.
+Mobile operating systems recommend or require using https in apps.
 Connections with a server with certified name are more reliable and safer.
-If you have a custom webserver that runs as a separate executable, 
-chances are it does not support https transfers.
+But if you - like me - has a custom webserver that runs as a separate executable, 
+chances are it does not support https transfers :(
 
 ## Routing files
 
