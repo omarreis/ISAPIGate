@@ -60,6 +60,16 @@ Project is small: only 2 source files ISAPIGate.dpr and HttpGateUtils.pas
 *Current version was tested with Delphi 10.4.1, Windows Server 2016 and IIS 10.0
 Compiled as a Win32 DLL ( must enable IIS Win32 ISAPIs )*
 
+## ISAPIGate security
+
+Note that ISAPIGate connects to the remote server(s) using an unencrypted socket. Security of the channel stops at this point. 
+
+      <Internet> <-------http/https------> | <ISAPIGate> <------http-------> <remote server>    
+                                           ^ firewall
+                                           
+The remote server is supposed to be inside your network. Don't gateway to servers over the internet or that you don't control.
+Configure the firewall to protect the channel from the jungle outside.
+
 ## IIS Configuration
 
 There are some steps to configure Windows IIS to run ISAPI scripts.
@@ -105,12 +115,3 @@ This way all outside access goes thru ISAPIGate.
 
 6- Set IIS application pool to be reset periodically (p.e. daily) to avoid application failure by heap fragmentation.
 
-## ISAPIGate security
-
-Note that ISAPIGate connects to the remote server(s) using an unencrypted socket. Security of the channel stops at this point. 
-
-      <Internet> <-------http/https------> | <ISAPIGate> <------http-------> <remote server>    
-                                           ^ firewall
-                                           
-The remote server is supposed to be inside your network. Don't gateway to servers over the internet or that you don't control.
-Configure the firewall to protect the channel from the jungle outside.
