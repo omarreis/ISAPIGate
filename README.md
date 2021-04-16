@@ -66,8 +66,13 @@ Note that ISAPIGate connects to the remote server(s) using an unencrypted socket
 
       <Internet> <-------http/https------> | <ISAPIGate> <------http-------> <remote server>    
                                            ^ firewall
-                                           
-The remote server is supposed to be inside your network. Don't gateway to servers over the internet or that you don't control.
+
+Security tips:
+
+* The remote server is supposed to be inside your network. 
+* Don't gateway to servers over the internet. 
+* Don't gateway to servers you don't control.
+
 Configure the firewall to protect the channel from the jungle outside.
 
 ## IIS Configuration
