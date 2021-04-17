@@ -8,9 +8,9 @@ ISAPI is one of the first Microsoft specifications for IIS webserver application
 The script executable is a native DLL that implements standard functions, 
 called by IIS. Since it is pre-compiled, ISAPI applications are efficient and safe.  
 
-*ISAPIGate* receives http requests ( uri + headers + post content ), connects to the 
+*ISAPIGate* receives http requests ( uri + headers + post content), connects to the 
 specified remote server using a plaintext socket and passes on the request. 
-Contents sent by remote server are sent to the client ( response headers + content  ).
+Contents returned by remote server are sent to the client (response headers + content).
 The remote server can be either on a different host or same host on a different port. 
 
 *ISAPIGate* is from 2002, an old style but time proven ISAPI application.  
